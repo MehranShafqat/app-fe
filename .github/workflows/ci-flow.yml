@@ -1,0 +1,22 @@
+name: Humanitec-testing
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v1
+    - name: Build and Push to mehran org
+      uses: humanitec/build-push-to-humanitec@master
+      with:
+        humanitec-token: ${{ secrets.HUMANITEC_TOKEN }}
+        organization: mehran-org-prod
+        auto-tag: true
+     
